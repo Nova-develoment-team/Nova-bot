@@ -1,0 +1,122 @@
+<%- include('../static/head.ejs', { bot,user})  %>
+<div id="content" class="main-content">
+    <br><br><br><br><br><br>
+    <div class="container">
+
+<div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-6 col-12 layout-spacing">
+        <p>New Blog</p>
+        <form action="/api/admin/maintence" method="POST">
+        <div class="form-row mb-4">
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Blog Title<span style="color:red">*</span></label>
+                <input type="text" class="form-control" id="Title" name="Title" placeholder="v1-Update" required>
+            </div>  
+
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Blog Description<span style="color:red">*</span></label>
+                <input type="text" class="form-control" id="Desc" name="Desc" placeholder="Changes: Something" required>
+            </div>  
+
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Blog writter<span style="color:red">*</span></label>
+                <input type="text" class="form-control" id="w" name="w" placeholder="v1" required>
+            </div>  
+
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Blog Url<span style="color:red">*</span></label>
+                <input type="text" class="form-control" id="Url" name="Url" placeholder="v1" required>
+            </div>  
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Delete Blog</label>
+                <input type="text" class="form-control" id="del" name="del" placeholder="v1-Update">
+            </div>  
+        </div>
+    </form>
+    <button onclick="make()" name="ban" class="btn btn-primary mt-3"><i class="fa fa-server"></i> New Blog</button>
+    <button onclick="remove()" name="unban" class="btn btn-danger mt-3"><i class="fa fa-server"></i> Delete Blog</button>
+    </div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<script>
+    function make(){
+        let Title = document.getElementById("Title").value;
+        let Desc = document.getElementById("Desc").value;
+        let Url = document.getElementById("Url").value;
+        let writter = document.getElementById("w").value;
+
+        let data = {
+        Title: Title,
+        Desc: Desc,
+        Url: Url,
+        writter: writter
+      }
+      fetch(`/api/admin/blog/new`, {
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                      'Authorization': 'NovaBot'
+                    },
+                    redirect: 'follow',
+                    referrerPolicy: 'no-referrer',
+                    body: JSON.stringify(data)
+                }).then(res => res.json()).then(body => {
+                    if (body.alert) {
+                        Swal.fire({title: body.alert.title, text: body.alert.message, icon: body.alert.type, closeOnConfirm: true, footer: 'Copyright 2021 &copy Nova bot™ - All right reserved.'})
+                    };
+                });
+
+    }
+
+    function remove(){
+        let dat = document.getElementById("del").value;
+      let data = {
+        id: dat
+      }
+      fetch(`/api/admin/blog/delete`, {
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                      'Authorization': 'NovaBot'
+                    },
+                    redirect: 'follow',
+                    referrerPolicy: 'no-referrer',
+                    body: JSON.stringify(data)
+                }).then(res => res.json()).then(body => {
+                    if (body.alert) {
+                        Swal.fire({title: body.alert.title, text: body.alert.message, icon: body.alert.type, closeOnConfirm: true, footer: 'Copyright 2021 &copy Nova bot™ - All right reserved.'})
+                    };
+                });
+
+    }
+    var urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.has('success') && urlParams.get('success')){
+    Swal.fire({
+     icon: 'success',
+     title: 'Succesfull...',
+     closeOnConfirm: true,
+     text: urlParams.get('message'),
+     footer: 'Copyright 2021 &copy Nova bot™ - All right reserved.'
+    })
+    }
+
+    if(urlParams.has('error') && urlParams.get('error')){
+    Swal.fire({
+     icon: 'error',
+     title: 'Oops...',
+     closeOnConfirm: true,
+     text: urlParams.get('message'),
+     footer: 'Copyright 2021 &copy Nova bot™ - All right reserved.'
+    })
+    }
+   </script>
+        <%- include('../static/foot.ejs', { bot,user}) %>
+    </div>

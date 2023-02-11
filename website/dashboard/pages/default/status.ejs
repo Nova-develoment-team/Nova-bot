@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <title>Status | <%=config.website_settings.title%></title>
+
+<%- include('../components/scripts.ejs') %>
+  </head>
+  <body>
+    <a id="backtotop" data-tippy-content="Back To Top.">
+      <i class="fa-solid fa-angle-up has-text-white fa-2xl mt-5"></i>
+    </a>
+<%- include('../components/navbar.ejs') %>
+    <section class="hero bg-base is-fullheight">
+      <div class="hero-body">
+        <div class="">
+          <div class="columns"> 
+            <div class="column mr-6 mt-12" data-aos="fade-up">
+              <p class="title has-text-white has-text-weight-bold">
+                <div class="AppContainer">
+                <style> 
+  .status-panel-page-nomargin {
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.4);
+border-radius: 5px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(1.6px);
+-webkit-backdrop-filter: blur(1.6px);
+  }
+
+        #phg { 
+        width: 100%; height: 100%; margin: 0; padding: 0; 
+      } 
+
+p {
+text-align: center;
+  font-weight: bold;
+}
+
+h3 {
+  text-align: center
+}
+
+  .status-panel-info {
+   background: rgba(255, 255, 255, 0.4);
+border-radius: 5px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(1.6px);
+-webkit-backdrop-filter: blur(1.6px);
+  }
+    .status-panel-green {
+   background: rgb(102, 140, 255);
+border-radius: 5px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(1.6px);
+-webkit-backdrop-filter: blur(1.6px);
+  }
+
+</style>
+     
+                             <div class="status-panel-page-nomargin">
+                 <% if (apistatus == true) { %>
+                  
+<div class="ServerStatusPanel">
+  <div class="ServerStatusPanelPageTitle">
+  <div class="PanelTitle undefined">Nova api</div>
+    <div class="ServerStatusPageTitleContent statusStable"> 
+    <div class="ServerStatusPageTitleText"> 
+    <div class="Panel ServerStatusPanelItem ServerStatusPanelRefreshing hidden">
+      <div class="LoadingDots">
+      <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+      <div class="Panel ServerStatusPanelItem ServerStatusPanelPing">
+        <tspan>
+        Server Offline
+        </tspan>
+      </div>
+        <div class="Panel ServerStatusPanelItem ServerStatusPanelStatusText">
+          <tspan>
+            Offline
+          </tspan>
+        </div>
+        </div>
+    </div>
+    <div id="phg"></div></br>
+    <script>
+      var data = [
+  ["1", 1, 0, 0],
+  ["2", 2, 0, 0],  
+  ["3", 3, 0, 0],
+  ["4", 4, 0, 0],
+          ["5", 5, 0, 0],
+  ["6", 6, 0, 0]
+];
+        anychart.onDocumentReady(function() {
+          var dataSet = anychart.data.set(data);
+
+// map the data for all series
+var firstSeriesData = dataSet.mapAs({x: 0, value: 1});
+var secondSeriesData = dataSet.mapAs({x: 0, value: 2});
+var thirdSeriesData = dataSet.mapAs({x: 0, value: 3});
+          var chart = anychart.line();
+
+// create the series and name them
+var firstSeries = chart.line(firstSeriesData);
+firstSeries.name("Ping");
+
+          // add a legend
+chart.legend().enabled(true);
+  
+// add a title
+chart.title("Ping History (Work In Progress)");
+          chart.container("phg");
+  
+// draw the resulting chart
+chart.draw()
+  });
+    </script>
+    </div>
+    </div>
+  </div>
+</div>              
+                 <% } else if (apistatus == false) { %>
+<div class="ServerStatusPanel">
+  <div class="ServerStatusPanelPageTitle">
+  <div class="PanelTitle undefined">Nova api</div>
+    <div class="ServerStatusPageTitleContent statusStable"> 
+    <div class="ServerStatusPageTitleText"> 
+    <div class="Panel ServerStatusPanelItem ServerStatusPanelRefreshing hidden">
+      <div class="LoadingDots">
+      <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+      <div class="Panel ServerStatusPanelItem ServerStatusPanelPing">
+        <tspan>
+          <%=apidat%>
+        </tspan>
+      </div>
+        <div class="Panel ServerStatusPanelItem ServerStatusPanelStatusText">
+          <tspan>
+            Stable
+          </tspan>
+        </div>
+        </div>
+    </div>
+    </div>
+  </div>
+                   
+    <div id="phg"></div>
+    <script>
+      var data = [
+  ["1", 1, 0, 0],
+  ["2", 2, 0, 0],  
+  ["3", 3, 0, 0],
+  ["4", 4, 0, 0],
+          ["5", 5, 0, 0],
+  ["6", 6, 0, 0]
+];
+        anychart.onDocumentReady(function() {
+          var dataSet = anychart.data.set(data);
+
+// map the data for all series
+var firstSeriesData = dataSet.mapAs({x: 0, value: 1});
+
+          var chart = anychart.line();
+
+// create the series and name them
+var firstSeries = chart.line(firstSeriesData);
+firstSeries.name("ping");
+chart.legend().enabled(true);
+  
+// add a title
+chart.title("Ping History (Work In Progres)");
+          chart.container("phg");
+  
+// draw the resulting chart
+chart.draw()
+  });
+    </script>
+</div>                
+                   <% } %>
+</div>
+                   </div>
+                             </div>
+
+
+                  
+                     
+          </div>
+        </div>
+      </div>
+        </div>
+    </section>
+<section class="section mt-6">
+      <div class="columns">
+
+
+        <div class="column"></div>
+      </div>    
+    </section>
+<%- include('../components/footer.ejs') %>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="https://assets.nova-bot.tk/assets/js/script.js"></script>
+  </body>
+</html>

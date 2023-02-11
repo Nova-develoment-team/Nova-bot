@@ -1,0 +1,97 @@
+          
+            <nav
+      class="navbar is-fixed-top"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-brand mt-2 mb-2">
+        <a class="navbar-item" href="#">
+          <strong>Nova</strong>
+        </a>
+
+        <a
+          role="button"
+          class="navbar-burger has-text-white"
+          data-target="navMenu"
+          aria-label="menu"
+          aria-expanded="false"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+<a href="https://dashboard.nova-bot.tk/" class="navbar-item is-tab">
+            Home
+          </a>
+
+          <a href="https://dashboard.nova-bot.tk/#features" class="navbar-item is-tab">
+            Features
+          </a>
+
+          <a href="https://dashboard.nova-bot.tk/#stats" class="navbar-item is-tab">
+            Stats
+          </a>
+
+                    <a href="https://dashboard.nova-bot.tk/status" class="navbar-item is-tab">
+            Status
+          </a>
+        </div>
+
+        <div class="navbar-end">
+          <a href="https://discord.gg/BASBGn7Gwh" class="navbar-item is-tab" target="_blank">
+            <i class="fa-brands fa-discord"></i>
+          </a>
+
+          <a href="https://github.com/nova-develoment-team/" class="navbar-item is-tab" target="_blank">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <%if (req.session.act) {%>
+     <li class="nav-item dropdown">
+              <a class="nav-link btn btn-discord dropdown-toggle has-text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 <img src="https://cdn.discordapp.com/avatars/<%=user.id%>/<%=user.avatar%>" class="nav-userProfile-image"/><b><%=user.username%></b><small>#<%=user.discriminator%></small>   
+              </a>              
+            <div class="dropdown-menu dropdown-menu-right animate slideIn" style="max-width:220px!important;">
+                <a class="dropdown-item" href="/console"><i class="fa fa-id-card mr-2"></i> Console</a>
+                <a class="dropdown-item" href="/console/select"><i class="fa-solid fa-list-radio"></i> Selector</a>
+                <% if (user.id=="845312519001342052"){ %>
+                <a class="dropdown-item" href="/console/admin/dashboard"><i class="fa-solid fa-screwdriver-wrench"></i> Admin</a>
+<% } %>
+              <div class="dropdown-divider"></div>
+  
+              <a class="dropdown-item dropdown-danger" href="/auth/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+          </li> 
+
+          <script>
+            function logout() {
+              Swal.fire({
+  icon: "info",
+  title: 'Do you want to logout?',
+  showDenyButton: true,
+  showCancelButton: false,
+  confirmButtonText: 'Cancle',
+  denyButtonText: `Logout`,
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    Swal.fire('Cancled.', '', 'success')
+  } else if (result.isDenied) {
+    Swal.fire('Logged out successfully', '', 'success');   
+    logout
+  }
+
+})
+            }
+          </script>
+  <%} else {%>
+                <div class="navbar-item">
+            <li class="nav-item" style="list-style-type: none">
+<a class="btn btn-discord nav-link" href="/login"><i class="fa-solid fa-user"></i> Login</a>
+                
+            </li>   
+          </div>
+<%}%>
+        </div>
+      </div>

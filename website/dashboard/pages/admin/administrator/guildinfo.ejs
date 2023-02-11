@@ -1,0 +1,21 @@
+<%- include('../static/head.ejs')  %>
+<div id="content" class="main-content">
+    <br><br><br><br><br><br>
+    <div class="container">
+<%-info%>
+  <br> <br> <br>
+  <a href="/guild/leave?id=<%=gid%>" onclick="return confirm('Are you sure want to leave ${bot.guilds.cache.get(req.query.id).name} guild?')">
+  <button type="button" style="text-align:center;background-color:red;height:30;width:30">Leave This Guild!</button></a>
+<div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-6 col-12 layout-spacing">
+
+
+<div class="row layout-top-spacing" id="cancel-row">
+                
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+            <table id="zero-config" class="table table-striped" style="width:100%">
+                
+
+        <%- include('../static/foot.ejs') %>
+    </div>

@@ -1,0 +1,70 @@
+<title>Home <%=config.website_settings.title%></title>
+
+  <%- include('./components/script.ejs') %>
+
+  </head>
+  <body>
+    <a id="backtotop" data-tippy-content="Back To Top.">
+      <i class="fa-solid fa-angle-up has-text-white fa-2xl mt-5"></i>
+    </a>
+
+    <nav
+      class="navbar is-fixed-top"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-brand mt-2 mb-2">
+        <a class="navbar-item" href="#">
+          <strong>Nova</strong>
+        </a>
+
+        <a
+          role="button"
+          class="navbar-burger has-text-white"
+          data-target="navMenu"
+          aria-label="menu"
+          aria-expanded="false"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <%- include('./components/navbar.ejs') %>
+
+          
+        </div>
+
+        <div class="navbar-end">
+          <a href="https://discord.gg/BASBGn7Gwh" class="navbar-item is-tab" target="_blank">
+            <i class="fa-brands fa-discord"></i>
+          </a>
+
+          <a href="https://github.com/nova-develoment-team/" class="navbar-item is-tab" target="_blank">
+            <i class="fa-brands fa-github"></i>
+          </a>
+
+          <div class="navbar-item">
+    
+            <li class="nav-item dropdown">
+              <a class="nav-link btn btn-discord dropdown-toggle has-text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <img src="https://cdn.discordapp.com/avatars/<%=user.id%>/<%=user.avatar%>" class="nav-userProfile-image"/><b><%=user.username%></b><small>#<%=user.discriminator%></small>   
+              </a>              
+            <div class="dropdown-menu dropdown-menu-right animate slideIn" style="max-width:220px!important;">
+                <a class="dropdown-item" href="/console"><i class="fa fa-id-card mr-2"></i> Console</a>
+                <a class="dropdown-item" href="/console/select"><i class="fa-solid fa-list-radio"></i> Selector</a>
+                <% if (user.id=="845312519001342052"){ %>
+                <a class="dropdown-item" href="/console/admin/dashboard"><i class="fa-solid fa-screwdriver-wrench"></i> Admin</a>
+<% } %>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item dropdown-danger" href="/auth/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+          </li>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>

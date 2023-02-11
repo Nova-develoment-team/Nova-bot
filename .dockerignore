@@ -1,0 +1,14 @@
+./mongodb/*
+./Lavalink/*
+./node_modules/*
+.env
+Nova.zip
+./logs/*
+./updateFiles
+./Work in progress
+./database/*
+replit.nix
+package-lock.json
+docker-compose
+Dockerfile
+.replit

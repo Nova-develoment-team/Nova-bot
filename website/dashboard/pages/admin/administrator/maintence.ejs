@@ -1,0 +1,84 @@
+<%- include('../static/head.ejs', { bot,user})  %>
+<div id="content" class="main-content">
+    <br><br><br><br><br><br>
+    <div class="container">
+
+<div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-6 col-12 layout-spacing">
+        <p>Maintence Mode</p>
+        <form action="/api/admin/maintence" method="POST">
+        <div class="form-row mb-4">
+            <div class="form-group col-md-4">
+                <label for="inputEmail4">Reason<span style="color:red">*</span></label>
+                <input type="text" class="form-control" id="reason" name="reason" placeholder="Working On Update" required>
+            </div>  
+        </div>
+    </form>
+    <button onclick="maintain()" name="ban" class="btn btn-primary mt-3"><i class="fa fa-server"></i> Open Maintence</button>
+    <button onclick="unmaintain()" name="unban" class="btn btn-danger mt-3"><i class="fa fa-server"></i> Close Maintence</button>
+    </div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<script>
+    function maintain(){
+      let res = document.getElementById("reason").value;
+      let data = {
+        reason: res
+      }
+      fetch(`<%config.website_settings.domain%>/api/admin/maintenece`, {
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                      'Authorization': 'NovaBot'
+                    },
+                    redirect: 'follow',
+                    referrerPolicy: 'no-referrer',
+                    body: JSON.stringify(data)
+                }).then(res => res.json()).then(body => {
+                    if (body.alert) {
+                        Swal.fire({title: body.alert.title, text: body.alert.message, icon: body.alert.type, closeOnConfirm: true, footer: 'Copyright 2021 &copy Nova bot™ - All right reserved.'})
+
+                    };
+                });
+    }
+    function unmaintain(){
+      fetch('<%config.website_settings.domain%>/api/admin/unmaintenece', {
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json', 
+                         'Authorization': 'NovaBot'
+                           
+                    },
+                    redirect: 'follow',
+                    referrerPolicy: 'no-referrer'
+                }).then(res => res.json()).then(body => {
+                    if (body.alert) {
+                        Swal.fire({title: body.alert.title, text: body.alert.message, icon: body.alert.type, closeOnConfirm: true, footer: 'Copyright 2021 &copy Nova bot™ - All right reserved.'})
+
+                    };
+                });
+    }
+ 
+    if(urlParams.has('error') && urlParams.get('error')){
+    Swal.fire({
+     icon: 'error',
+     title: 'Oops...',
+     text: urlParams.get('message'),
+     footer: 'Copyright 2021 &copy Nova bot™ - All right reserved.'
+    }).then((result) => {
+  if (result.isConfirmed) {
+    window.location.href = '/console/admin/maintence';
+  }    
+})
+    }
+   </script>
+        <%- include('../static/foot.ejs', { bot,user}) %>
+    </div>

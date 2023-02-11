@@ -1,0 +1,12 @@
+node_modules
+.env
+.git
+.cache
+Work in progress/*
+database/*
+logs/debug.log
+logs/error.log
+updatFiles/*
+/logs/warning.log
+/logs/antiCrash/errorLog.txt
+/src/*
