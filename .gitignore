@@ -6,7 +6,8 @@ Nova.zip
 ./database/*
 replit.nix
 package-lock.json
-docker-compose
+docker-compose.yml
 Dockerfile
 .replit
 .git
+.env
