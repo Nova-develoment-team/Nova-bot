@@ -1,12 +1,12 @@
 node_modules
-.env
+Nova.zip
+./logs/*
+./updateFiles
+./Work in progress
+./database/*
+replit.nix
+package-lock.json
+docker-compose
+Dockerfile
+.replit
 .git
-.cache
-Work in progress/*
-database/*
-logs/debug.log
-logs/error.log
-updatFiles/*
-/logs/warning.log
-/logs/antiCrash/errorLog.txt
-/src/*
